@@ -3,7 +3,7 @@ import pyautogui
 from PIL import Image
 from numpy import asarray
 import scipy.special
-from time import sleep
+from time import sleep, time
 import pickle
 
 scale_x = 180
@@ -44,12 +44,12 @@ top_edge = top - (full_height - height) / 2
 def click1():
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height)
-  pyautogui.click(left_edge + 2.6388 * width, top_edge + 2.6996 * height)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height) #click "option"
+  pyautogui.click(left_edge + 2.6388 * width, top_edge + 2.6996 * height) #click "load"
   pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
   sleep(1.5)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
-  sleep(1)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "go back"
+  sleep(9) #in original v0.8593 it was sleep(1)
   pyautogui.click(left_edge + 0.5555 * width, top_edge + 3.5646 * height)
   pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height)
 
@@ -60,12 +60,12 @@ def click2():
 def click3():
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height)
-  pyautogui.click(left_edge + 1.9491 * width, top_edge + 2.6996 * height)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height) #click "option"
+  pyautogui.click(left_edge + 1.9491 * width, top_edge + 2.6996 * height) #click "save"
   pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
   sleep(1.5)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "go back"
+  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height) #exit options
   sleep(1)
   pyautogui.click(left_edge + 0.5555 * width, top_edge + 3.5646 * height)
   pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height)
@@ -73,11 +73,11 @@ def click3():
 def click4():
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height)
-  pyautogui.click(left_edge + 1.9491 * width, top_edge + 2.6996 * height)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height) #click "option"
+  pyautogui.click(left_edge + 1.9491 * width, top_edge + 2.6996 * height) #click "save"
   pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
   sleep(1.5)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "go back"
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
 
 class neuralNetwork:
@@ -175,7 +175,10 @@ while(if_repeat):
   index = classes.index(choosen_class)
   temp = 0
   click3_tribe = False
+  debug = False
   while((already_gotten < demanded_number_of_choosen) and (if_save or already_gotten == 0)):
+    if(debug):
+      start = time()
     number_of_tries += 1
     if(click3_tribe):
       click3_tribe = False
@@ -198,6 +201,9 @@ while(if_repeat):
     else:
       print("Drawn class:", classes[temp])
     print("Number of tries:", number_of_tries, "Number of", choosen_class, "already received:", already_gotten)
+    if(debug):
+      end = time()
+      print("Cycle duration: " + str(end - start))
   print("Done!;)")
   prompt = "Write 1 if you want to continue or 0 if you want to exit. Then press enter: "
   if_save = False
