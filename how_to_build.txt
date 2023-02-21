@@ -1,5 +1,6 @@
 It's all about running python code.
-You can just install python interpreter and run MSClassGetter.py
+You need to install python interpreter and all reqired libraries. Then running MSClassGetter.py should work and behave the same way as .exe.
+It's recommended to install libraries with pip command in command prompt. To know which ones are rquired check which headers are imported or try to run MSClassGetter.py. Compilation errors will tell which are missing.
 It's not required for this to work, but if you want to build .exe file I did everything as described on this site: https://datatofish.com/executable-pyinstaller/
 So as I had Python already installed, I just typed in command prompt 2 commands:
 pip install pyinstaller
