@@ -1,5 +1,6 @@
 It's all about running python code.
 You need to install python interpreter and all required libraries. Then running MSClassGetter.py should work and behave the same way as .exe.
+Note that MSClassGetter.py uses NNsave.txt, so make sure to have both of them in the same folder.
 It's recommended to install libraries with pip command in command prompt.
 To know which ones are required, check which headers are imported or try running MSClassGetter.py. Compilation errors will tell you which ones are missing.
 It's not required for this to work, but if you want to build .exe file I did everything as described on this site: https://datatofish.com/executable-pyinstaller/
