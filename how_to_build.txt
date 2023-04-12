@@ -9,3 +9,4 @@ It's not required for this to work, but if you want to build .exe file I did eve
 So as I had Python already installed, I just typed in command prompt 2 commands:
 pip install pyinstaller
 pyinstaller --onefile AI_class_chooser.py
+
