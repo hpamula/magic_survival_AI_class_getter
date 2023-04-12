@@ -16,7 +16,7 @@ f
 # True(t) or False(f): enable static emulator windows size and coordinates (position on screen):
 f
 # change these 4 numbers after turning static coordinates on (in line above)
-# when static coordinates are tunred on, program does not use cords.png
+# when static coordinates are turned on, program does not use cords.png
 # it's recommended to copy them from program log
 # left:
 1035
