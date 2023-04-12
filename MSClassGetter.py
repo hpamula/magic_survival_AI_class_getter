@@ -6,79 +6,137 @@ import scipy.special
 from time import sleep, time
 import pickle
 
+between_clicking_LOAD_and_Return = 1.5
+between_clicking_SAVE_and_Return = 1.5
+between_clicking_Return_after_LOAD_and_Shop = 11
+between_clicking_Return_after_SAVE_and_Shop = 0
+waiting_for_class_image_to_set_its_colors = 0.7
+waiting_when_game_lagged = 11
+
+static_coordinates_set = False
+left = 0
+top = 0
+width = 0
+height = 0
 scale_x = 180
 scale_y = 265
-found = False
-while(not found):
+debug = False
+frequent_config_loading = False
+
+def load_user_configuration():
   try:
-    cords = pyautogui.locateOnScreen('cords.png')
-    left = cords[0]
-    top = cords[1]
-    width = cords[2]
-    height = cords[3]
+    with open("config_yourself.txt") as config_yourself:
+      config_yourself_content = config_yourself.readlines()
+    config_yourself_opened = True
   except:
-    input("Screenshot wasn't found on screen. Take a screenshot and save it in this folder as cords.png. Then press enter")
-    # pyautogui.screenshot(region=(cords)).show()
-  else:
-    found = True
-print("Given screenshot (top left corner, width and height): ")
-print(cords)
+    config_yourself_opened = False
+    print("config_yourself.txt wasn't found in current directory. Proceeding with default settings.")
+
+  global between_clicking_LOAD_and_Return
+  global between_clicking_SAVE_and_Return
+  global between_clicking_Return_after_LOAD_and_Shop
+  global between_clicking_Return_after_SAVE_and_Shop
+  global waiting_for_class_image_to_set_its_colors
+  global waiting_when_game_lagged
+  global static_coordinates_set
+  global left
+  global top
+  global width
+  global height
+  global debug
+  global frequent_config_loading
+  if(config_yourself_opened):
+    if(config_yourself_content[1][0] == "t"):
+      between_clicking_LOAD_and_Return = float(config_yourself_content[4])
+      between_clicking_SAVE_and_Return = float(config_yourself_content[6])
+      between_clicking_Return_after_LOAD_and_Shop = float(config_yourself_content[8])
+      between_clicking_Return_after_SAVE_and_Shop = float(config_yourself_content[10])
+      waiting_for_class_image_to_set_its_colors = float(config_yourself_content[12])
+      waiting_when_game_lagged = float(config_yourself_content[14])
+      print("Delays loaded from config_yourself.txt")
+    if(config_yourself_content[16][0] == "t"):
+      left = float(config_yourself_content[21])
+      top = float(config_yourself_content[23])
+      width = float(config_yourself_content[25])
+      height = float(config_yourself_content[27])
+      static_coordinates_set = True
+      print("Static coordinates loaded from config_yourself.txt")
+    if(config_yourself_content[29][0] == "t"):
+      debug = True
+      print("Debug turned on.")
+    if(config_yourself_content[31][0] == "t"):
+      frequent_config_loading = True
+      print("Frequent config loading turned on.")
+
+load_user_configuration()
+
+if(not static_coordinates_set):
+  found = False
+  while(not found):
+    try:
+      cords = pyautogui.locateOnScreen('cords.png')
+      left = cords[0]
+      top = cords[1]
+      width = cords[2]
+      height = cords[3]
+    except:
+      input("Screenshot wasn't found on screen. Take a screenshot and save it in this folder as cords.png. Then press enter")
+      # pyautogui.screenshot(region=(cords)).show()
+    else:
+      found = True
+  print("Given screenshot (top left corner, width and height): ")
+  print(cords)
 
 def capture_screen(shift_x, shift_y):
-  image = pyautogui.screenshot(region=(cords[0] + shift_x, cords[1] + shift_y, cords[2], cords[3]))
+  image = pyautogui.screenshot(region=(left + shift_x, top + shift_y, width, height))
   newsize = (scale_x, scale_y)
   image = image.resize(newsize)
   image = image.convert("L")
   return image
+# classes = ['lagged',
+#             'wizard', 'astronomer', 'ice society', 'shaman', 'warlock',
+#             'enchantress', 'summoner', 'bishop', 'mystic', 'druid',
+#             'pyromancer', 'socerer', 'archemist', 'scholar', 'witch',
+#             'electromancer', 'arbiter', 'arc mage', 'archaeologist', 'magician',
+#             'mage', 'battle mage', 'warlord', 'dark mage']
 classes = ['lagged',
-            'wizard', 'astronomer', 'ice society', 'shaman', 'warlock',
-            'enchantress', 'summoner', 'bishop', 'mystic', 'druid',
-            'pyromancer', 'socerer', 'archemist', 'scholar', 'witch',
-            'electromancer', 'arbiter', 'arc mage', 'archaeologist', 'magician',
-            'mage', 'battle mage', 'warlord', 'dark mage']
+            'wizard', 'astronomer', 'cryomancer', 'enchanter', 'warlock',
+            'arcane scholar', 'summoner', 'bishop', 'mystic', 'druid',
+            'pyromancer', 'sorcerer', 'alchemist', 'scholar', 'witch',
+            'electromancer', 'moderator', 'arch mage', 'archaeologist', 'magician',
+            'mage', 'battle mage', 'warlord', 'dark wizard']
 
 full_width = width * 3.245
 full_height = height * 3.8954
 left_edge = left - (full_width - width) / 2
 top_edge = top - (full_height - height) / 2
 def click1():
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
+  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height) #"Tap to Continue" after buying class
+  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height) #click "X" in right upper corner to exit shop
   pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height) #click "option"
-  pyautogui.click(left_edge + 2.6388 * width, top_edge + 2.6996 * height) #click "load"
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
-  sleep(1.5)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "go back"
-  sleep(9) #in original v0.8593 it was sleep(1)
-  pyautogui.click(left_edge + 0.5555 * width, top_edge + 3.5646 * height)
-  pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height)
+#   pyautogui.click(left_edge + 2.6388 * width, top_edge + 2.6996 * height) #click "load"
+  pyautogui.click(left_edge + 2.6388 * width, top_edge + 2.8777 * height) #click "load" in v0.88 as 2 new languages were added
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "Run"
+  sleep(between_clicking_LOAD_and_Return)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "Return"
+  sleep(between_clicking_Return_after_LOAD_and_Shop) #in original v0.8593 it was sleep(1)
+  pyautogui.click(left_edge + 0.5555 * width, top_edge + 3.5646 * height) #click "Shop"
+  pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height) #click "Research Data"
 
 def click2():
-  pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height)
-  pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height)
-
-def click3():
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
+  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height) #"Tap to Continue" after buying class
+  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height) #click "X" in right upper corner to exit shop
   pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height) #click "option"
   pyautogui.click(left_edge + 1.9491 * width, top_edge + 2.6996 * height) #click "save"
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
-  sleep(1.5)
+  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "Run"
+  sleep(between_clicking_SAVE_and_Return)
   pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "go back"
   pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height) #exit options
-  sleep(1)
-  pyautogui.click(left_edge + 0.5555 * width, top_edge + 3.5646 * height)
-  pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height)
 
-def click4():
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 3.5646 * height) #click "option"
-  pyautogui.click(left_edge + 1.9491 * width, top_edge + 2.6996 * height) #click "save"
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height)
-  sleep(1.5)
-  pyautogui.click(left_edge + 1.25 * width, top_edge + 2.5855 * height) #click "go back"
-  pyautogui.click(left_edge + 2.9611 * width, top_edge + 0.2889 * height)
+def click3():
+  sleep(between_clicking_Return_after_SAVE_and_Shop)    #to test if 0 works
+  pyautogui.click(left_edge + 0.5555 * width, top_edge + 3.5646 * height) #click "Shop"
+  pyautogui.click(left_edge + 1.1111 * width, top_edge + 2.8517 * height) #click "Research Data"
 
 class neuralNetwork:
   
@@ -174,36 +232,35 @@ while(if_repeat):
     demanded_number_of_choosen = int(_number)
   index = classes.index(choosen_class)
   temp = 0
-  click3_tribe = False
-  debug = False
+  almost_ended = False
   while((already_gotten < demanded_number_of_choosen) and (if_save or already_gotten == 0)):
+    if(frequent_config_loading):
+      load_user_configuration()
     if(debug):
       start = time()
     number_of_tries += 1
-    if(click3_tribe):
-      click3_tribe = False
+    if(almost_ended):
+      almost_ended = False
     else:
       click1()
-    sleep(0.7)
+    sleep(waiting_for_class_image_to_set_its_colors)
     temp = check_screen()
     if(temp == 0):
       print("Game load has lagged. Waiting 10 seconds before processing further.")
-      sleep(10)
+      sleep(waiting_when_game_lagged)
     elif(temp == index):
-      print("Drawn class:", classes[temp])
+      print("Number of tries:", number_of_tries, " Drawn class:", classes[temp], " Number of", choosen_class, "already received:", already_gotten)
       already_gotten += 1
       if(if_save):
-        click3_tribe = True
-        if(already_gotten == demanded_number_of_choosen):
-          click4()
-        elif(already_gotten < demanded_number_of_choosen):
+        almost_ended = True
+        click2()
+        if(already_gotten < demanded_number_of_choosen):
           click3()
     else:
-      print("Drawn class:", classes[temp])
-    print("Number of tries:", number_of_tries, "Number of", choosen_class, "already received:", already_gotten)
+      print("Number of tries:", number_of_tries, " Drawn class:", classes[temp], " Number of", choosen_class, "already received:", already_gotten)
     if(debug):
       end = time()
-      print("Cycle duration: " + str(end - start))
+      print("Cycle duration: " + str(end - start) + " s")
   print("Done!;)")
   prompt = "Write 1 if you want to continue or 0 if you want to exit. Then press enter: "
   if_save = False

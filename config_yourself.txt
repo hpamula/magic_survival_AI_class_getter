@@ -1,0 +1,35 @@
+# True(t) or False(f): Apply custom delays from this file:
+f
+# delays in seconds (these are the same as default in program):
+# between clicking "LOAD" and "Return":
+1.5
+# between clicking "SAVE" and "Return":
+1.5
+# between clicking "Return" (after LOAD) and "Shop":
+11.5
+# between clicking "Return" (after SAVE) and "Shop":
+0
+# waiting for class image to set its colors from white flash after clicking "Research Data":
+0.7
+# waiting when game lagged:
+10
+# True(t) or False(f): enable static emulator windows size and coordinates (position on screen):
+f
+# change these 4 numbers after turning static coordinates on (in line above)
+# when static coordinates are tunred on, program does not use cords.png
+# it's recommended to copy them from program log
+# left:
+1035
+# top:
+705
+# width:
+288
+# height:
+426
+# True(t) or False(f): Enable debug mode, which shows additional info in log:
+f
+# True(t) or False(f): Load config_yourself.txt file content every iteration (roughly 10 seconds):
+f
+# This last option in line above might be useful to quickly tweak down "clocks" to low delays to make this program run faster
+# By default (False) config_yourself.txt content is loaded only once when program starts
+# Program works also when this file does not exist. Then it just works with default values
