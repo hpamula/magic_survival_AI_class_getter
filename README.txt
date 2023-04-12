@@ -17,12 +17,13 @@ How to solve problems:
 If program clicks in wrong places, it probably means that screenshot was taken unprecisely (check screenshot_area.png in this folder)
 ---------------------------------------------------
 Additional info:
+Changing config_yourself.txt is optional.
 Don't resize or change game window position when program is running.
 You can change them after stopping program.
 To stop running program, click program's window and from keyboard Ctrl + C
 You have to do it quickly;)
 Program will also stop when given requirements are met.
-If you run emulator with admin permissions, then you have to run MSClassGetter.exe also with admin permissions,
+If you run emulator with admin persmissions, then you have to run MSClassGetter.exe also with admin permissions,
 to allow it click on program (emulator) with admin permissions.
 (NN_save.txt keeps saved neural network data and .exe needs it to work)
 Thanks for using my program, feedback is appreciated;)
