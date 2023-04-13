@@ -1,6 +1,6 @@
 # True(t) or False(f): Apply custom delays from this file:
 f
-# delays in seconds (these are the same as default in program):
+# DELAYS in seconds - WARNING: better experiment without saving classes (just in search mode):
 # between clicking "LOAD" and "Return":
 1.5
 # between clicking "SAVE" and "Return":
