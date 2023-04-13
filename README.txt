@@ -35,6 +35,9 @@ Changing its content is optional.
 The DELAYS section affects program directly.
 Changing delays is fully reversible, but better test without saving classes (type 0 in MSClassGetter.exe window)
 while experimenting because e. g. when time "between clicking "LOAD" and "Return":" is to low,
-program will try to recognize blank screen with "Successfully loaded." message and "Return" button
+program will try to recognize screen with "Successfully loaded." message and "Return" button
 as a class, which seems most similiar to druid among all classes, which will buy druid if
 it is the class the program is searching for.
+In my tests when "between clicking "Return" (after LOAD) and "Shop":" was too low, astronomer or druid were "recognized".
+When "waiting for class image to set its colors from white flash after clicking "Research Data":" was too low,
+usually "game has lagged" or druid (once again) were recognized.
