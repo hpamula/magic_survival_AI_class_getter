@@ -10,7 +10,7 @@ f
 # between clicking "Return" (after SAVE) and "Shop":
 0
 # waiting for class image to set its colors from white flash after clicking "Research Data":
-0.7
+1
 # waiting when game lagged:
 10
 # True(t) or False(f): enable static emulator windows size and coordinates (position on screen):
@@ -28,8 +28,10 @@ f
 426
 # True(t) or False(f): Enable debug mode, which shows additional info in log:
 f
-# True(t) or False(f): Load config_yourself.txt file content every iteration (roughly 10 seconds):
+# True(t) or False(f): Frequent loading. Load config_yourself.txt file content every iteration (roughly 14 seconds):
 f
-# This last option in line above might be useful to quickly tweak down "clocks" to low delays to make this program run faster
-# By default (False) config_yourself.txt content is loaded only once when program starts
-# Program works also when this file does not exist. Then it just works with default values
+# This last option in line above requires program restart to get applied
+# and might be useful to quickly tweak down "clocks" to low delays to make this program run faster
+# By default (False) config_yourself.txt content is loaded only once when program starts,
+# so unless frequent loading is turned on every change requires program restart.
+# Program works also when this file does not exist. Then it just works with default values.
