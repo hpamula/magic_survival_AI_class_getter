@@ -2,9 +2,9 @@
 f
 # DELAYS in seconds - WARNING: better experiment without saving classes (just in search mode):
 # between clicking "LOAD" and "Return":
-1.5
+1.7
 # between clicking "SAVE" and "Return":
-1.5
+2.5
 # between clicking "Return" (after LOAD) and "Shop":
 10
 # between clicking "Return" (after SAVE) and "Shop":
