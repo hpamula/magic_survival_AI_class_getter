@@ -25,6 +25,9 @@ Program will also stop when given requirements are met.
 If you run emulator with admin persmissions, then you have to run MSClassGetter.exe also with admin permissions,
 to allow it click on program (emulator) with admin permissions.
 (NN_save.txt keeps saved neural network data and .exe needs it to work)
+You can see whole program if you want to know how it works (MSClassGetter.py). 
+It's in this folder an hidden file. Feel free to change and compile for personal use.
+Program's repository: https://github.com/firstas/magic_survival_AI_class_getter
 Thanks for using my program, feedback is appreciated;)
 ---------------------------------------------------
 Additional info about config_yourself.txt:
