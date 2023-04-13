@@ -41,3 +41,5 @@ it is the class the program is searching for.
 In my tests when "between clicking "Return" (after LOAD) and "Shop":" was too low, astronomer or druid were "recognized".
 When "waiting for class image to set its colors from white flash after clicking "Research Data":" was too low,
 usually "game has lagged" or druid (once again) were recognized.
+If program already works properly, increasing values won't change anything
+besides increasing average time needed to get classes.
