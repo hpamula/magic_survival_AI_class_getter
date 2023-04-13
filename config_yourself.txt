@@ -6,7 +6,7 @@ f
 # between clicking "SAVE" and "Return":
 1.5
 # between clicking "Return" (after LOAD) and "Shop":
-11.5
+10
 # between clicking "Return" (after SAVE) and "Shop":
 0
 # waiting for class image to set its colors from white flash after clicking "Research Data":
@@ -19,13 +19,13 @@ f
 # when static coordinates are turned on, program does not use cords.png
 # it's recommended to copy them from program log
 # left:
-1035
+2084
 # top:
-705
+828
 # width:
-288
+234
 # height:
-426
+349
 # True(t) or False(f): Enable debug mode, which shows additional info in log:
 f
 # True(t) or False(f): Frequent loading. Load config_yourself.txt file content every iteration (roughly 14 seconds):
