@@ -2,11 +2,11 @@
 f
 # DELAYS in seconds - WARNING: better experiment without saving classes (just in search mode):
 # between clicking "LOAD" and "Return":
-1.7
-# between clicking "SAVE" and "Return":
 2.5
+# between clicking "SAVE" and "Return":
+3
 # between clicking "Return" (after LOAD) and "Shop":
-10
+10.5
 # between clicking "Return" (after SAVE) and "Shop":
 0
 # waiting for class image to set its colors from white flash after clicking "Research Data":
